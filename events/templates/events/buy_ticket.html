@@ -1,19 +1,20 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Купить билет</title>
+    <title>{% trans "Купить билет" %}</title>
 </head>
 <body>
-    <h2>Купить билет на: {{ event.title }}</h2>
+    <h2>{% trans "Купить билет на" %}: {{ event.title }}</h2>
 
     <form method="post">
         {% csrf_token %}
-        <label for="quantity">Количество:</label>
+        <label for="quantity">{% trans "Количество" %}:</label>
         <input type="number" name="quantity" min="1" max="{{ event.available_seats }}" required>
-        <button type="submit">Купить</button>
+        <button type="submit">{% trans "Купить" %}</button>
     </form>
 
-    <a href="/">← Назад к списку событий</a>
+    <a href="/">&larr; {% trans "Назад к списку событий" %}</a>
 </body>
 </html>
