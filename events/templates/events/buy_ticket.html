@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Купить билет</title>
+</head>
+<body>
+    <h2>Купить билет на: {{ event.title }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="quantity">Количество:</label>
+        <input type="number" name="quantity" min="1" max="{{ event.available_seats }}" required>
+        <button type="submit">Купить</button>
+    </form>
+
+    <a href="/">← Назад к списку событий</a>
+</body>
+</html>

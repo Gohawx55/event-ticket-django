@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Мои билеты</title>
+</head>
+<body>
+    <h1>Мои билеты</h1>
+    <h5 class="text-muted mb-4">Всего куплено билетов: {{ total_tickets }}</h5>
+
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li style="color: green;">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% for ticket in tickets %}
+        <div style="margin-bottom: 20px;">
+            <p><strong>Событие:</strong> {{ ticket.event.title }}</p>
+            <p><strong>Количество:</strong> {{ ticket.quantity }}</p>
+            <p><strong>Дата покупки:</strong> {{ ticket.purchase_date }}</p>
+            <a href="{% url 'download_ticket_pdf' ticket.id %}" class="btn btn-outline-secondary mt-2">
+                📥 Скачать PDF
+            </a>
+            
+
+            {% if ticket.qr_code %}
+                <p><strong>QR-код:</strong></p>
+                <img src="{{ ticket.qr_code.url }}" width="200">
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>У вас пока нет билетов.</p>
+    {% endfor %}
+</body>
+</html>
