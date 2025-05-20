@@ -1,0 +1,16 @@
+    {% extends "events/base.html" %}
+    {% load static %}
+
+    {% block title %}Создать мероприятие{% endblock %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Создать мероприятие 🎟</h1>
+
+        <form method="post" enctype="multipart/form-data" class="shadow p-4 bg-white rounded">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Создать</button>
+            <a href="{% url 'event_list' %}" class="btn btn-secondary ms-2">Назад к событиям</a>
+        </form>
+    {% endblock %}

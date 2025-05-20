@@ -1,0 +1,16 @@
+{% extends "events/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Вход" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">{% trans "Войти в аккаунт" %}</h2>
+
+  <form method="post" class="shadow p-4 bg-light rounded">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">{% trans "Войти" %}</button>
+  </form>
+</div>
+{% endblock %}
